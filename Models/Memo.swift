@@ -11,5 +11,5 @@ class Memo{
     var title:String?
     var description:String?
     var image:UIImage?
-    var date:String?
+    var date:Date?
 }

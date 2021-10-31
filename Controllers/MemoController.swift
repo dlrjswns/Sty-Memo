@@ -8,6 +8,8 @@
 import UIKit
 
 class MemoController:UIViewController{
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     lazy var imagePicker:UIImagePickerController={
         let picker = UIImagePickerController()
         picker.sourceType = .savedPhotosAlbum
@@ -44,6 +46,7 @@ class MemoController:UIViewController{
         btn.heightAnchor.constraint(equalToConstant: 30).isActive = true
         btn.layer.cornerRadius = 10
         btn.layer.borderWidth = 1
+        btn.addTarget(self, action: #selector(makeBtnTapped), for: UIControl.Event.touchUpInside)
         return btn
     }()
     
@@ -76,6 +79,16 @@ class MemoController:UIViewController{
     //MARK: -Objc
     @objc func tappedImageLoadBtn(){
         self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @objc func makeBtnTapped(){
+        let memo = Memo()
+        memo.title = titleField.text
+        memo.description = descriptionText.text
+        memo.image = imageView.image
+        memo.date = Date()
+        appDelegate.data.append(memo)
+        navigationController?.popViewController(animated: true)
     }
     
     //MARK: -Configure

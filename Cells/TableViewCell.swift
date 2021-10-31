@@ -26,11 +26,16 @@ class TableViewCell:UITableViewCell{
     lazy var subTitle:UILabel={
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10)
+        label.numberOfLines = 2
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
     
     lazy var imageView1:UIImageView={
        let imageView = UIImageView()
+        imageView.widthAnchor.constraint(equalToConstant: self.frame.height).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: self.frame.height).isActive = true
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
