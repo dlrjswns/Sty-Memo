@@ -26,8 +26,9 @@ class TableViewCell:UITableViewCell{
     lazy var subTitle:UILabel={
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10)
-        label.numberOfLines = 2
+        label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
+        label.widthAnchor.constraint(equalToConstant: 30).isActive = true
         return label
     }()
     
@@ -56,19 +57,21 @@ class TableViewCell:UITableViewCell{
     
     //MARK: -Configure
     func configure(){
+        self.addSubview(imageView1)
+        imageView1.translatesAutoresizingMaskIntoConstraints = false
+        imageView1.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5).isActive = true
+        imageView1.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        
         self.addSubview(title)
         title.translatesAutoresizingMaskIntoConstraints = false
         title.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-        title.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        title.leftAnchor.constraint(equalTo: imageView1.rightAnchor, constant: 5).isActive = true
         
         self.addSubview(subTitle)
         subTitle.translatesAutoresizingMaskIntoConstraints = false
         subTitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true
-        subTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
+        subTitle.leftAnchor.constraint(equalTo: imageView1.rightAnchor, constant: 5).isActive = true
         
-        self.addSubview(imageView1)
-        imageView1.translatesAutoresizingMaskIntoConstraints = false
-        imageView1.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5).isActive = true
         
         self.addSubview(date)
         date.translatesAutoresizingMaskIntoConstraints = false
